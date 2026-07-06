@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fintrack Pro - Personal Finance Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <section id="loginPage">
+      <div class="loginCard">
+        <h1>FinTrack Pro</h1>
+
+        <p>Track your income and expenses with ease.</p>
+
+        <form id="loginForm">
+          <input
+            type="text"
+            id="userName"
+            placeholder="Enter your name"
+            required
+          />
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <header>
+        <div>
+          <h1>FinTrack Pro</h1>
+
+          <p id="welcomeText"></p>
+        </div>
+
+        <div class="headerButtons">
+          <button id="profileBtn">
+            <i class="fa-solid fa-user"></i>
+          </button>
+
+          <button id="themeBtn">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+
+          <button id="logoutBtn">Logout</button>
+        </div>
+      </header>
+
+      <section class="summary">
+        <div class="card">
+          <h3>Balance</h3>
+
+          <h2 id="balance">₹0</h2>
+        </div>
+
+        <div class="card">
+          <h3>Income</h3>
+
+          <h2 id="income">₹0</h2>
+        </div>
+
+        <div class="card">
+          <h3>Expense</h3>
+
+          <h2 id="expense">₹0</h2>
+        </div>
+      </section>
+
+      <section class="transactionForm">
+        <h2>Add Transaction</h2>
+
+        <form id="addTransaction">
+          <input type="text" id="title" placeholder="Title" required />
+
+          <input type="number" id="amount" placeholder="Amount" required />
+
+          <select id="type">
+            <option value="Income">Income</option>
+
+            <option value="Expense">Expense</option>
+          </select>
+
+          <select id="category">
+            <option>General</option>
+            <option>Food</option>
+            <option>Shopping</option>
+            <option>Travel</option>
+            <option>Bills</option>
+            <option>Salary</option>
+            <option>Entertainment</option>
+            <option>Health</option>
+          </select>
+
+          <input type="date" id="date" required />
+
+          <button type="submit">Add Transaction</button>
+        </form>
+      </section>
+
+      <section class="controls">
+        <select id="currency">
+          <option value="INR">INR (₹)</option>
+
+          <option value="USD">USD ($)</option>
+
+          <option value="EUR">EUR (€)</option>
+
+          <option value="GBP">GBP (£)</option>
+
+          <option value="JPY">JPY (¥)</option>
+        </select>
+
+        <div>
+          <button class="filter active" data-filter="All">All</button>
+
+          <button class="filter" data-filter="Income">Income</button>
+
+          <button class="filter" data-filter="Expense">Expense</button>
+        </div>
+      </section>
+
+      <section class="transactions">
+        <h2>Transaction History</h2>
+
+        <ul id="transactionList"></ul>
+      </section>
+
+      <section class="chartContainer">
+        <canvas id="financeChart"></canvas>
+      </section>
+
+      <section class="settings">
+        <h2>Profile Settings</h2>
+
+        <div class="setting">
+          <label for="profileName"> Name: </label>
+
+          <input type="text" id="profileName" placeholder="Enter your name" />
+        </div>
+
+        <div class="setting">
+          <label for="profileCurrency"> Preferred Currency </label>
+
+          <select id="profileCurrency">
+            <option value="INR">INR (₹)</option>
+
+            <option value="USD">USD ($)</option>
+
+            <option value="EUR">EUR (€)</option>
+
+            <option value="GBP">GBP (£)</option>
+
+            <option value="JPY">JPY (¥)</option>
+          </select>
+        </div>
+
+        <div class="settingButtons">
+          <button id="saveProfile">Save Profile</button>
+
+          <button id="resetData">Reset All Data</button>
+        </div>
+      </section>
+
+      <div id="profileModal" class="modal hidden">
+        <div class="modalContent">
+          <h2>Profile</h2>
+
+          <input type="text" id="modalName" placeholder="Enter your name" />
+
+          <select id="modalCurrency">
+            <option value="INR">INR (₹)</option>
+
+            <option value="USD">USD ($)</option>
+
+            <option value="EUR">EUR (€)</option>
+
+            <option value="GBP">GBP (£)</option>
+
+            <option value="JPY">JPY (¥)</option>
+          </select>
+
+          <div class="modalButtons">
+            <button id="saveModalProfile">Save</button>
+
+            <button id="closeProfile">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="resetModal" class="modal hidden">
+        <div class="modalContent">
+          <h2>Reset Data</h2>
+
+          <p>This will remove your profile and every transaction.</p>
+
+          <div class="modalButtons">
+            <button id="confirmReset">Yes</button>
+
+            <button id="cancelReset">No</button>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p></p>
+      </footer>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
